@@ -20,6 +20,12 @@ img {
     margin: 0;
 }
 
+a {
+    text-decoration: none;
+    width: 171.4px;
+    margin: 40px;
+}
+
 .container {
     width: 100%;
     background-color: #fff;

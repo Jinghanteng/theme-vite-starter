@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<div class="navContainer" th:with="menu = ${menuFinder.getPrimary()}">
+    <!-- <ul th:with="menuItems = ${menu.menuItems}">
+              <li th:each="menuItem : ${menuItems}">
+                <a
+                  th:href="@{${menuItem.status.href}}"
+                  th:text="${menuItem.status.displayName}"
+                  th:target="${menuItem.spec.target?.value}"
+                >
+                </a>
+              </li>
+            </ul> -->
+    <div class="navList" th:with="menuItems = ${menu.menuItems}">
+        <div th:each="menuItem : ${menuItems}">
+            <a class="navTab" th:href="@{${menuItem.status.href}}" th:text="${menuItem.status.displayName}"
+                th:target="${menuItem.spec.target?.value}">
+            </a>
+        </div>
+        <!-- <div v-for="(item,index) in navList" :class="item.active ? 'activeTab navTab' : 'navTab'" :key="index"
+                @click="handleNav(index)">{{ item.name }}</div> -->
+    </div>
+</div>

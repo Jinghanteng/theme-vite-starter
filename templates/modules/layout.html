@@ -10,6 +10,10 @@
   <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
   <link rel="stylesheet" th:href="@{/assets/dist/style.css}" />
   <script th:src="@{/assets/dist/main.iife.js}"></script>
+  <!-- import Vue before Element -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+  <!-- import JavaScript -->
+  <script src="https://unpkg.com/element-ui@2.15.14/lib/index.js"></script>
   <th:block th:if="${head != null}">
     <th:block th:replace="${head}" />
   </th:block>
@@ -18,11 +22,108 @@
 <body>
   <section>
     <div class="container" id="container">
-      <div th:include="modules/header.html"></div>
+      <div th:include="modules/header.html" />
+      <div th:include="modules/menu.html" />
       <th:block th:replace="${content}" />
     </div>
-    <div th:include="modules/footer.html"></div>
-
+    <div th:include="modules/footer.html" />
+    <script>
+      new Vue({
+          el: '#container',
+          data: function () {
+              return {
+                  searchType: '1',
+                  searchVal: '',
+                  navList: [{
+                      name: "首页",
+                      active: true
+                  }, {
+                      name: "壮美玉树",
+                      active: false
+                  }, {
+                      name: "领导之窗",
+                      active: false
+                  }, {
+                      name: "政府信息公开",
+                      active: false
+                  }, {
+                      name: "政策解读",
+                      active: false
+                  }, {
+                      name: "网上服务",
+                      active: false
+                  }, {
+                      name: "专题专栏",
+                      active: false
+                  }],
+                  activeName: 'first',
+                  fileNameList: [{
+                      name: "州政政府文件",
+                      active: true
+                  }, {
+                      name: "州政办文件",
+                      active: false
+                  }, {
+                      name: "政府工作报告",
+                      active: false
+                  }],
+                  interactionList: [{
+                      name: "州长信箱",
+                      active: true
+                  }, {
+                      name: "政务咨询",
+                      active: false
+                  }],
+                  tableData: [{
+                      name: "玉树统计年鉴申请",
+                      status: "已受理",
+                      date: "2022-11-27"
+                  }, {
+                      name: "统计年鉴申请",
+                      status: "已受理",
+                      date: "2022-11-27"
+                  }, {
+                      name: "统计年鉴申请",
+                      status: "已受理",
+                      date: "2022-11-27"
+                  }],
+                  collectVal: ""
+              }
+          },
+          methods: {
+              handleNav(index) {
+                  let navList = this.navList
+                  navList.forEach((item, dex) => {
+                      item.active = false
+                      if (index == dex) {
+                          item.active = true
+                      }
+                  })
+                  this.navList = navList
+              },
+              handleFile(index) {
+                  let fileNameList = this.fileNameList
+                  fileNameList.forEach((item, dex) => {
+                      item.active = false
+                      if (index == dex) {
+                          item.active = true
+                      }
+                  })
+                  this.fileNameList = fileNameList
+              },
+              handleInteraction(index) {
+                  let interactionList = this.interactionList
+                  interactionList.forEach((item, dex) => {
+                      item.active = false
+                      if (index == dex) {
+                          item.active = true
+                      }
+                  })
+                  this.interactionList = interactionList
+              }
+          }
+      })
+  </script>
   </section>
 </body>
 

@@ -1,27 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org" th:replace="~{modules/layout :: html(head = null,content = ~{::content})}">
-<th:block th:fragment="content">    
-    <div class="navContainer" th:with="menu = ${menuFinder.getPrimary()}">
-        <!-- <ul th:with="menuItems = ${menu.menuItems}">
-              <li th:each="menuItem : ${menuItems}">
-                <a
-                  th:href="@{${menuItem.status.href}}"
-                  th:text="${menuItem.status.displayName}"
-                  th:target="${menuItem.spec.target?.value}"
-                >
-                </a>
-              </li>
-            </ul> -->
-        <div class="navList" th:with="menuItems = ${menu.menuItems}">
-            <div class="navTab" th:each="menuItem : ${menuItems}">
-                <a th:href="@{${menuItem.status.href}}" th:text="${menuItem.status.displayName}"
-                    th:target="${menuItem.spec.target?.value}">
-                </a>
-            </div>
-            <!-- <div v-for="(item,index) in navList" :class="item.active ? 'activeTab navTab' : 'navTab'" :key="index"
-                @click="handleNav(index)">{{ item.name }}</div> -->
-        </div>
-    </div>
+<th:block th:fragment="content">   
+     
     <div class="mainContainer">
         <p class="mainTitle">习近平接受外国新任驻华大使递交国书</p>
         <div class="newsContainer">
@@ -395,103 +375,6 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
     <!-- import JavaScript -->
     <script src="https://unpkg.com/element-ui@2.15.14/lib/index.js"></script>
-    <script>
-        new Vue({
-            el: '#container',
-            data: function () {
-                return {
-                    searchType: '1',
-                    searchVal: '',
-                    navList: [{
-                        name: "首页",
-                        active: true
-                    }, {
-                        name: "壮美玉树",
-                        active: false
-                    }, {
-                        name: "领导之窗",
-                        active: false
-                    }, {
-                        name: "政府信息公开",
-                        active: false
-                    }, {
-                        name: "政策解读",
-                        active: false
-                    }, {
-                        name: "网上服务",
-                        active: false
-                    }, {
-                        name: "专题专栏",
-                        active: false
-                    }],
-                    activeName: 'first',
-                    fileNameList: [{
-                        name: "州政政府文件",
-                        active: true
-                    }, {
-                        name: "州政办文件",
-                        active: false
-                    }, {
-                        name: "政府工作报告",
-                        active: false
-                    }],
-                    interactionList: [{
-                        name: "州长信箱",
-                        active: true
-                    }, {
-                        name: "政务咨询",
-                        active: false
-                    }],
-                    tableData: [{
-                        name: "玉树统计年鉴申请",
-                        status: "已受理",
-                        date: "2022-11-27"
-                    }, {
-                        name: "统计年鉴申请",
-                        status: "已受理",
-                        date: "2022-11-27"
-                    }, {
-                        name: "统计年鉴申请",
-                        status: "已受理",
-                        date: "2022-11-27"
-                    }],
-                    collectVal: ""
-                }
-            },
-            methods: {
-                handleNav(index) {
-                    let navList = this.navList
-                    navList.forEach((item, dex) => {
-                        item.active = false
-                        if (index == dex) {
-                            item.active = true
-                        }
-                    })
-                    this.navList = navList
-                },
-                handleFile(index) {
-                    let fileNameList = this.fileNameList
-                    fileNameList.forEach((item, dex) => {
-                        item.active = false
-                        if (index == dex) {
-                            item.active = true
-                        }
-                    })
-                    this.fileNameList = fileNameList
-                },
-                handleInteraction(index) {
-                    let interactionList = this.interactionList
-                    interactionList.forEach((item, dex) => {
-                        item.active = false
-                        if (index == dex) {
-                            item.active = true
-                        }
-                    })
-                    this.interactionList = interactionList
-                }
-            }
-        })
-    </script>
-</th:block>
 
+</th:block>
 </html>
