@@ -5,3 +5,9 @@ body {
 ul {
   list-style: decimal;
 }
+
+span {
+  color: red;
+  font-size: 20px;
+}
+

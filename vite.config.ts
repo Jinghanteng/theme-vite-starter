@@ -1,6 +1,6 @@
 import { defineConfig } from "vite";
 import { fileURLToPath } from "url";
-import path from "path";
+const path = require('path');
 
 export default defineConfig({
   build: {

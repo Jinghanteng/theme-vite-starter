@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<div class="header">
+    <div class="headerText">
+        <p><span>中国政府网</span><span>省政府</span></p>
+        <p><span>网站无障碍</span><span>适老版</span></p>
+    </div>
+    <div class="middle">
+        <img class="logo" th:src="@{/assets/images/logo.png}" alt>
+        <div class="searchContainer">
+            <el-select v-model="searchType">
+                <el-option label="搜本站" value="1"></el-option>
+            </el-select>
+            <el-input class="searchInp" v-model="searchVal" placeholder="请输入"></el-input>
+            <el-button type="primary">搜索</el-button>
+        </div>
+
+    </div>
+</div>
+</html>

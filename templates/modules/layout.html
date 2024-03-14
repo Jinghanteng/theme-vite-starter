@@ -1,14 +1,29 @@
 <!DOCTYPE html>
-<html lang="en" th:fragment="html (content)">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title th:text="${site.title}"></title>
-    <link rel="stylesheet" th:href="@{/assets/dist/style.css}" href="./assets/dist/style.css" />
-    <script th:src="@{/assets/dist/main.iife.js}"></script>
-  </head>
-  <body th:style="'background-color: '+${theme.config.styles.background_color}">
-    <th:block th:replace="${content}" />
-  </body>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:fragment="html (head,content)">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2" />
+  <title th:text="${site.title}"></title>
+  <!-- 引入样式 -->
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+  <link rel="stylesheet" th:href="@{/assets/dist/style.css}" />
+  <script th:src="@{/assets/dist/main.iife.js}"></script>
+  <th:block th:if="${head != null}">
+    <th:block th:replace="${head}" />
+  </th:block>
+</head>
+
+<body>
+  <section>
+    <div class="container" id="container">
+      <div th:include="modules/header.html"></div>
+      <th:block th:replace="${content}" />
+    </div>
+    <div th:include="modules/footer.html"></div>
+
+  </section>
+</body>
+
 </html>

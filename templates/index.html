@@ -1,10 +1,497 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org" th:replace="~{modules/layout :: html(content = ~{::content})}">
-  <th:block th:fragment="content">
-    <ul>
-      <li th:each="post : ${posts.items}">
-        <a th:text="${post.spec.title}" th:href="${post.status.permalink}"></a>
-      </li>
-    </ul>
-  </th:block>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{modules/layout :: html(head = null,content = ~{::content})}">
+<th:block th:fragment="content">    
+    <div class="navContainer" th:with="menu = ${menuFinder.getPrimary()}">
+        <!-- <ul th:with="menuItems = ${menu.menuItems}">
+              <li th:each="menuItem : ${menuItems}">
+                <a
+                  th:href="@{${menuItem.status.href}}"
+                  th:text="${menuItem.status.displayName}"
+                  th:target="${menuItem.spec.target?.value}"
+                >
+                </a>
+              </li>
+            </ul> -->
+        <div class="navList" th:with="menuItems = ${menu.menuItems}">
+            <div class="navTab" th:each="menuItem : ${menuItems}">
+                <a th:href="@{${menuItem.status.href}}" th:text="${menuItem.status.displayName}"
+                    th:target="${menuItem.spec.target?.value}">
+                </a>
+            </div>
+            <!-- <div v-for="(item,index) in navList" :class="item.active ? 'activeTab navTab' : 'navTab'" :key="index"
+                @click="handleNav(index)">{{ item.name }}</div> -->
+        </div>
+    </div>
+    <div class="mainContainer">
+        <p class="mainTitle">习近平接受外国新任驻华大使递交国书</p>
+        <div class="newsContainer">
+            <div class="newsList">
+                <div class="newsPanel">
+                    <p>中央军委举行慰问驻京部队老干部迎新春演出 习近平向全军老同志祝贺新春</p>
+                    <div class="afterContent"></div>
+                </div>
+                <div class="newsPanel">
+                    <p>习近平致电祝贺阿扎利当选连任科摩罗总统</p>
+                    <div class="afterContent"></div>
+                </div>
+                <div class="newsPanel">
+                    <p>总书记的人民情怀：“把惠民生、暖民心、顺民意的工作做到群众心坎上”</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="newsContainer">
+            <div class="newsList">
+                <div class="newsPanel">
+                    <p>习近平的敦煌情</p>
+                    <div class="afterContent"></div>
+                </div>
+                <div class="newsPanel">
+                    <p>习近平同法国总统马克龙就中法建交60周年互致贺电</p>
+                    <div class="afterContent"></div>
+                </div>
+                <div class="newsPanel">
+                    <p>习近平向中法建交60周年招待会发表视频致辞</p>
+                </div>
+            </div>
+        </div>
+        <div class="newsContent">
+            <el-carousel class="carouselPanel" :interval="5000" arrow="never">
+                <el-carousel-item v-for="item in 4" :key="item">
+                    <h3>{{item}}</h3>
+                </el-carousel-item>
+            </el-carousel>
+            <div class="rightNews">
+                <el-tabs v-model="activeName" @tab-click="handleClick">
+                    <el-tab-pane label="国务院要闻" name="first"></el-tab-pane>
+                    <el-tab-pane label="青海新闻" name="second"></el-tab-pane>
+                    <el-tab-pane label="玉树新闻" name="third"></el-tab-pane>
+                    <el-tab-pane label="通知公告" name="fourth"></el-tab-pane>
+                </el-tabs>
+                <ul class="fileList">
+                    <li>
+                        <p>玉树下发通知：全面实施禁酒控酒党员干部和公职人员</p><span>04-20</span>
+                    </li>
+                    <li>
+                        <p>玉树州多措并举纵深推进“组团式”帮扶工作</p><span>04-20</span>
+                    </li>
+                    <li>
+                        <p>囊谦黑青稞产品拿下1700万元销售大单</p><span>04-20</span>
+                    </li>
+                    <li>
+                        <p>囊谦县开展形式多样的宣讲活动让党的二十大精神进</p><span>04-20</span>
+                    </li>
+                    <li>
+                        <p>玉树州召开十四届州委第三轮巡察工作动员部署会</p><span>04-20</span>
+                    </li>
+                    <li>
+                        <p>玉树州召开十四届州委第三轮巡察工作动员部署会</p><span>04-20</span>
+                    </li>
+                    <li>
+                        <p>玉树州召开十四届州委第三轮巡察工作动员部署会</p><span>04-20</span>
+                    </li>
+                </ul>
+                <div class="imgPanel">
+                    <img th:src="@{/assets/images/country.png}" alt>
+                    <img th:src="@{/assets/images/province.png}" alt>
+                </div>
+            </div>
+        </div>
+        <img class="banner" th:src="@{/assets/images/banner01.png}" alt>
+    </div>
+    <div class="messageContainer">
+        <div class="innerContent">
+            <div class="leftPanel">
+                <div class="pubTitle">
+                    <div class="beforePanel"></div>
+                    <p>领导简介</p>
+                </div>
+                <div class="leaderPanel">
+                    <div class="title">州&nbsp;&nbsp;&nbsp;长：</div>
+                    <div class="leaderList">
+                        <div class="content">索南丹增</div>
+                    </div>
+                </div>
+                <div class="leaderPanel">
+                    <div class="title">副州长：</div>
+                    <div class="leaderList">
+                        <div class="content">李育海<span></span></div>
+                        <div class="content">史瑞明<span></span></div>
+                        <div class="content">王心阔<span></span></div>
+                        <div class="content">尼玛才仁<span></span></div>
+                        <div class="content">郭虎春<span></span></div>
+                        <div class="content">马瑞<span></span></div>
+                        <div class="content">王永震<span></span></div>
+                        <div class="content">杨占仓<span></span></div>
+                        <div class="content"><span></span></div>
+                    </div>
+                </div>
+                <div class="leaderPanel">
+                    <div class="title">秘书长：</div>
+                    <div class="leaderList">
+                        <div class="content">多&nbsp;&nbsp;&nbsp;杰</div>
+                    </div>
+                </div>
+                <div class="openTitle">政务信息公开</div>
+                <div class="openList">
+                    <div class="openItem">
+                        <img th:src="@{/assets/images/open1.png}" src="./assets/images/open1.png" alt>
+                        <p>依申请公开</p>
+                    </div>
+                    <div class="openItem">
+                        <img th:src="@{/assets/images/open2.png}" src="./assets/images/open2.png" alt>
+                        <p>政府信息公开指南</p>
+                    </div>
+                    <div class="openItem">
+                        <img th:src="@{/assets/images/open3.png}" src="./assets/images/open3.png" alt>
+                        <p>政府信息公开年报</p>
+                    </div>
+                    <div class="openItem">
+                        <img th:src="@{/assets/images/open4.png}" src="./assets/images/open4.png" alt>
+                        <p>政府信息公开制度</p>
+                    </div>
+                </div>
+            </div>
+            <div class="middlePanel">
+                <div class="pubTitle">
+                    <div class="beforePanel"></div>
+                    <p>政府信息公开</p>
+                </div>
+                <div class="openBox">
+                    <div class="innerOpen">
+                        <img th:src="@{/assets/images/img1.png}" src="./assets/images/img1.png" alt>
+                        <span>履职依据</span>
+                    </div>
+                    <div class="innerOpen">
+                        <img th:src="@{/assets/images/img2.png}" src="./assets/images/img2.png" alt>
+                        <span>规划计划</span>
+                    </div>
+                    <div class="innerOpen">
+                        <img th:src="@{/assets/images/img3.png}" src="./assets/images/img3.png" alt>
+                        <span>统计数据</span>
+                    </div>
+                    <div class="innerOpen">
+                        <img th:src="@{/assets/images/img4.png}" src="./assets/images/img4.png" alt>
+                        <span>项目建设</span>
+                    </div>
+                </div>
+                <div class="openBox lastOpen">
+                    <div class="innerOpen">
+                        <img th:src="@{/assets/images/img5.png}" src="./assets/images/img5.png" alt>
+                        <span>财政公开</span>
+                    </div>
+                    <div class="innerOpen">
+                        <img th:src="@{/assets/images/img6.png}" src="./assets/images/img6.png" alt>
+                        <span>处罚/强制</span>
+                    </div>
+                    <div class="innerOpen">
+                        <img th:src="@{/assets/images/img7.png}" src="./assets/images/img7.png" alt>
+                        <span>政府采购</span>
+                    </div>
+                    <div class="innerOpen">
+                        <img th:src="@{/assets/images/img8.png}" src="./assets/images/img8.png" alt>
+                        <span>民生保障</span>
+                    </div>
+                </div>
+                <div class="pubTitle">
+                    <div class="beforePanel"></div>
+                    <p>政府文件</p>
+                </div>
+                <div class="fileContainer">
+                    <div v-for="(item,index) in fileNameList" :key="index"
+                        :class="item.active ? 'fileName activeName' : 'fileName'" @click="handleFile(index)">{{
+                        item.name }}</div>
+                </div>
+                <ul class="fileList">
+                    <li>
+                        <p>关于印发《2023年度玉树州州级部门和市场监管领域部门联合“双随机、一公开”…</p><span>04-20</span>
+                    </li>
+                    <li>
+                        <p>关于印发《2023年为民办实事任务清单分工》的通知</p><span>04-20</span>
+                    </li>
+                    <li>
+                        <p>政府工作报告(2023)</p><span>04-20</span>
+                    </li>
+                    <li>
+                        <p>印发《关于建立健全州政府系统抓落实工作机制的专项行动方案》的通知</p><span>04-20</span>
+                    </li>
+                    <li>
+                        <p>关于成立玉树州330千伏第二回线路工程建设协调领导小组的通知</p><span>04-20</span>
+                    </li>
+                    <li>
+                        <p>关于印发玉树州2023年草原生态保护补助奖励政策实施方案的通知</p><span>04-20</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="rightPanel">
+                <div class="pubTitle">
+                    <div class="beforePanel"></div>
+                    <p>壮美玉树</p>
+                </div>
+                <div class="yushu">
+                    <div class="overview">玉树概况</div>
+                    <div>玉树旅游</div>
+                </div>
+                <div class="countyPanel">
+                    <span>治多县</span>
+                    <span>曲麻莱县</span>
+                    <span>称多县</span>
+                </div>
+                <div class="countyPanel lastCounty">
+                    <span>治多县</span>
+                    <span>囊谦县</span>
+                    <span>玉树市</span>
+                </div>
+                <div class="pubTitle">
+                    <div class="beforePanel"></div>
+                    <p>专题专栏</p>
+                </div>
+                <ul class="fileList subjectList">
+                    <li>
+                        <p>玉树下发通知：全面实施禁酒控酒党员干部和公职人员...</p><span>04-20</span>
+                    </li>
+                    <li>
+                        <p>玉树下发通知：全面实施禁酒控酒党员干部和公职人员...</p><span>04-20</span>
+                    </li>
+                    <li>
+                        <p>玉树下发通知：全面实施禁酒控酒党员干部和公职人员...</p><span>04-20</span>
+                    </li>
+                    <li>
+                        <p>玉树下发通知：全面实施禁酒控酒党员干部和公职人员...</p><span>04-20</span>
+                    </li>
+                    <li>
+                        <p>玉树下发通知：全面实施禁酒控酒党员干部和公职人员...</p><span>04-20</span>
+                    </li>
+                    <li>
+                        <p>玉树下发通知：全面实施禁酒控酒党员干部和公职人员...</p><span>04-20</span>
+                    </li>
+                    <li>
+                        <p>玉树下发通知：全面实施禁酒控酒党员干部和公职人员...</p><span>04-20</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="bottomContainer">
+        <img class="banner banner2" th:src="@{/assets/images/banner02.png}" src="./assets/images/banner02.png"
+            alt="">
+        <div class="mainBottom">
+            <div class="mainLeft">
+                <div class="pubTitle">
+                    <div class="beforePanel"></div>
+                    <p>财政公开</p>
+                </div>
+                <ul class="fileList firstUl">
+                    <li>
+                        <p>玉树下发通知：全面实施禁酒控酒党员干部和公职人员...</p><span>04-20</span>
+                    </li>
+                    <li>
+                        <p>玉树州多措并举纵深推进“组团式”帮扶工作</p><span>04-20</span>
+                    </li>
+                    <li>
+                        <p>囊谦黑青稞产品拿下1700万元销售大单</p><span>04-20</span>
+                    </li>
+                    <li>
+                        <p>囊谦县开展形式多样的宣讲活动让党的二十大精神进万…</p><span>04-20</span>
+                    </li>
+                    <li>
+                        <p>囊谦县开展形式多样的宣讲活动让党的二十大精神进万…</p><span>04-20</span>
+                    </li>
+                </ul>
+                <div class="pubTitle">
+                    <div class="beforePanel"></div>
+                    <p>人事信息</p>
+                </div>
+                <ul class="fileList secondFile">
+                    <li>
+                        <p>玉树下发通知：全面实施禁酒控酒党员干部和公职人员...</p><span>04-20</span>
+                    </li>
+                    <li>
+                        <p>玉树州多措并举纵深推进“组团式”帮扶工作</p><span>04-20</span>
+                    </li>
+                    <li>
+                        <p>囊谦黑青稞产品拿下1700万元销售大单</p><span>04-20</span>
+                    </li>
+                    <li>
+                        <p>囊谦县开展形式多样的宣讲活动让党的二十大精神进万…</p><span>04-20</span>
+                    </li>
+                    <li>
+                        <p>囊谦县开展形式多样的宣讲活动让党的二十大精神进万…</p><span>04-20</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="mainRight">
+                <div class="pubTitle">
+                    <div class="beforePanel"></div>
+                    <p>政策解读</p>
+                </div>
+                <ul class="fileList">
+                    <li>
+                        <p>《关于全面实行行政许可事项清单管理的通知》政策解读</p><span>04-20</span>
+                    </li>
+                    <li>
+                        <p>玉树州网格化环境监管奖励资金发放管理办法起草说明</p><span>04-20</span>
+                    </li>
+                    <li>
+                        <p>玉树藏族自治州人民政府办公室关于印发玉树藏族自治州全面推行城乡居民基本养老保险费和城乡居民基本医疗保险费税银模式征缴工作实施方案的通知</p>
+                        <span>04-20</span>
+                    </li>
+                    <li>
+                        <p>我省强化公共租赁住房规范管理将原公租房保障范围准入面积人均16平方米以下调整为20平方米以下</p><span>04-20</span>
+                    </li>
+                    <li>
+                        <p>我省强化公共租赁住房规范管理将原公租房保障范围准入面积人均16平方米以下调整为20平方米以下</p><span>04-20</span>
+                    </li>
+                </ul>
+                <div class="rightBottom">
+                    <div class="interactionPanel">
+                        <div class="topInteraction">
+                            <div class="interactionTab">
+                                <p>互动交流</p>
+                            </div>
+                            <div class="interactionList">
+                                <div v-for="(item,index) in interactionList" :key="index"
+                                    :class="item.active ? 'interactionItem activeItem' : 'interactionItem'"
+                                    @click="handleInteraction(index)">{{ item.name }}</div>
+                            </div>
+                        </div>
+                        <div class="letterTable">
+                            <el-table :data="tableData" header-cell-class-name="tableHeader">
+                                <el-table-column prop="name" label="信件标题">
+                                </el-table-column>
+                                <el-table-column prop="status" class-name="statusTxt" label="受理状态" width="90"
+                                    align="center">
+                                </el-table-column>
+                                <el-table-column prop="date" label="信件日期" width="120" align="center">
+                                </el-table-column>
+                            </el-table>
+                        </div>
+                        <div class="writeLetter">
+                            <img th:src="@{/assets/images/edit.png}" src="./assets/images/edit.png" alt="">
+                            <span>我要写信</span>
+                        </div>
+                    </div>
+                    <div class="collectPanel">
+                        <div class="panelTitle">民意征集</div>
+                        <p class="recommendation">您认为“玉树藏族自治州人民政府网站改版”注重修改那项内容：</p>
+                        <p class="date">2022年1月1日起，2022年12月31日止</p>
+                        <el-radio-group class="collectRadio" v-model="collectVal">
+                            <el-radio :label="1">内容</el-radio>
+                            <el-radio :label="2">栏目</el-radio>
+                            <el-radio :label="3">风格</el-radio>
+                            <el-radio :label="4">颜色</el-radio>
+                        </el-radio-group>
+                        <div class="collectBtns">
+                            <div class="collectBtn">投票</div>
+                            <div class="collectBtn">查看</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- import Vue before Element -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui@2.15.14/lib/index.js"></script>
+    <script>
+        new Vue({
+            el: '#container',
+            data: function () {
+                return {
+                    searchType: '1',
+                    searchVal: '',
+                    navList: [{
+                        name: "首页",
+                        active: true
+                    }, {
+                        name: "壮美玉树",
+                        active: false
+                    }, {
+                        name: "领导之窗",
+                        active: false
+                    }, {
+                        name: "政府信息公开",
+                        active: false
+                    }, {
+                        name: "政策解读",
+                        active: false
+                    }, {
+                        name: "网上服务",
+                        active: false
+                    }, {
+                        name: "专题专栏",
+                        active: false
+                    }],
+                    activeName: 'first',
+                    fileNameList: [{
+                        name: "州政政府文件",
+                        active: true
+                    }, {
+                        name: "州政办文件",
+                        active: false
+                    }, {
+                        name: "政府工作报告",
+                        active: false
+                    }],
+                    interactionList: [{
+                        name: "州长信箱",
+                        active: true
+                    }, {
+                        name: "政务咨询",
+                        active: false
+                    }],
+                    tableData: [{
+                        name: "玉树统计年鉴申请",
+                        status: "已受理",
+                        date: "2022-11-27"
+                    }, {
+                        name: "统计年鉴申请",
+                        status: "已受理",
+                        date: "2022-11-27"
+                    }, {
+                        name: "统计年鉴申请",
+                        status: "已受理",
+                        date: "2022-11-27"
+                    }],
+                    collectVal: ""
+                }
+            },
+            methods: {
+                handleNav(index) {
+                    let navList = this.navList
+                    navList.forEach((item, dex) => {
+                        item.active = false
+                        if (index == dex) {
+                            item.active = true
+                        }
+                    })
+                    this.navList = navList
+                },
+                handleFile(index) {
+                    let fileNameList = this.fileNameList
+                    fileNameList.forEach((item, dex) => {
+                        item.active = false
+                        if (index == dex) {
+                            item.active = true
+                        }
+                    })
+                    this.fileNameList = fileNameList
+                },
+                handleInteraction(index) {
+                    let interactionList = this.interactionList
+                    interactionList.forEach((item, dex) => {
+                        item.active = false
+                        if (index == dex) {
+                            item.active = true
+                        }
+                    })
+                    this.interactionList = interactionList
+                }
+            }
+        })
+    </script>
+</th:block>
+
 </html>
